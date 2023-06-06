@@ -6,6 +6,8 @@ const waitFor = delay => new Promise(resolve => setTimeout(resolve, delay));
 dotenv.config();
 
 const platform = 'Snapinbox'
+const example_plaform = 'example.com'
+
 let gmail
 
 puppeteer.use(StealthPlugin());
@@ -24,42 +26,54 @@ const page = await browser.newPage();
 await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36");
 await page.setViewport({width: 1080, height: 1024}); 
 
-console.log(`Starting ${platform}`)
+console.log(`Starting ${example_plaform}`)
 
-const url =`https://www.emailnator.com/`;
-await page.goto(url, {waitUntil:'networkidle2'});
+// const url =`https://www.emailnator.com/`;
+// await page.goto(url, {waitUntil:'networkidle2'});
 
-await page.waitForSelector("input[placeholder='Email Address']")
-console.log(`${platform} loaded successfully`)
+// await page.waitForSelector("input[placeholder='Email Address']")
+// console.log(`${platform} loaded successfully`)
 
-let username
-let domain
-let email
+// let username
+// let domain
+// let email
 
-while (domain !== 'gmail.com') {
-    const inputElement = await page.$('input[placeholder="Email Address"]');
-    email = await page.evaluate(inputElement => inputElement?.value.trim() || '', inputElement);
+// while (domain !== 'gmail.com') {
+//     const inputElement = await page.$('input[placeholder="Email Address"]');
+//     email = await page.evaluate(inputElement => inputElement?.value.trim() || '', inputElement);
     
-    if (typeof email === 'string' && email.length > 0) {
-        [username, domain] = email.split('@');
-    } else {
-        console.log('Error: Invalid email address or input element not found.');
-        break;
-    }
+//     if (typeof email === 'string' && email.length > 0) {
+//         [username, domain] = email.split('@');
+//     } else {
+//         console.log('Error: Invalid email address or input element not found.');
+//         break;
+//     }
     
-    await page.click('button.form-control');
-    await waitFor(1000);
-}
+//     await page.click('button.form-control');
+//     await waitFor(1000);
+// }
 
-await page.click('button[name="goBtn"]')
-await page.waitForSelector(".message_container")
+// await page.click('button[name="goBtn"]')
+// await page.waitForSelector(".message_container")
 
-console.log("Inbox loaded successfully")
-gmail = email
+// console.log("Inbox loaded successfully")
+// gmail = email
 
+await page.goto('https://developer.chrome.com/');
+await page.setViewport({ width: 1080, height: 1024 });
+
+const cookieBannerSelector = '.cookie-banner';
+await page.waitForSelector(cookieBannerSelector);
+
+const logStatement = `Cookie banner found!`;
 
 export const generateEmail = async(req, res) => {
-    res.send(gmail)
-    console.log(gmail)
+    res.send(logStatement)
+    console.log(logStatement)
 }
+
+// export const generateEmail = async(req, res) => {
+//     res.send(gmail)
+//     console.log(gmail)
+// }
 

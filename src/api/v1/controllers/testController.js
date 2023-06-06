@@ -54,9 +54,8 @@ let gmail
 
 puppeteer.use(StealthPlugin());
 let launchOptions = { 
-    headless: 'new',
+    headless: false,
     ignoreDefaultArgs: ['--enable-automation'],
-    args:['--disable-setuid-sandbox','--no-sandbox','--single-process','--no-zygote'],
     executablePath:
         process.env.NODE_ENV === 'production'
           ? process.env.PUPPETEER_EXECUTABLE_PATH
@@ -71,7 +70,7 @@ await page.setViewport({width: 1080, height: 1024});
 console.log(`Starting ${platform}`)
 
 const url =`https://www.emailnator.com/`;
-await page.goto(url, { timeout: 60000 });
+await page.goto(url);
 console.log('Go to working')
 
 await page.waitForSelector("input[placeholder='Email Address']")

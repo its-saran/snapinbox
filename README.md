@@ -1,4 +1,5 @@
 Temporary Gmail Generator API
+
 Welcome to the Temporary Gmail Generator API, a tool designed to make the life of solo developers easier. With just a few clicks, you can generate as many temporary Gmail addresses as you need without cluttering up your own inbox.
 
 The API allows you to create alter egos without the need for capes and tights, and it streamlines your development process like magic. You can use it to add a little mystery to your projects or test user registration features without the need for real email addresses.

@@ -15,8 +15,8 @@ app.use(express.static(join(__dirname, 'public')));
 app.use("/api/v1/", v1GenerateRouter);
 
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}/`);
-    console.log(`API is listening on http://localhost:${PORT}/api/v1/generate`);
+    console.log(`Server is running on https://snapinbox.onrender.com/`);
+    console.log(`API is listening on https://snapinbox.onrender.com/api/v1/generate`);
 });
 
 
